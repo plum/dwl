@@ -1,0 +1,11 @@
+--- dwl.c
++++ dwl.c
+@@ -108,6 +108,8 @@ typedef struct {
+ 	int bw;
+ 	unsigned int tags;
+ 	int isfloating;
++	double alpha;
++	double prevalpha;
+ 	uint32_t resize; /* configure serial of a pending resize */
+ 	int prevx;
+ 	int prevy;
