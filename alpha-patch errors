@@ -1,0 +1,57 @@
+
+[sudo] password for chuee:
+rm -f dwl *.o *-protocol.h *-protocol.c
+/usr/bin/wayland-scanner server-header \
+	//usr/share/wayland-protocols/stable/xdg-shell/xdg-shell.xml xdg-shell-protocol.h
+/usr/bin/wayland-scanner server-header \
+	protocols/wlr-layer-shell-unstable-v1.xml wlr-layer-shell-unstable-v1-protocol.h
+/usr/bin/wayland-scanner server-header \
+	protocols/idle.xml idle-protocol.h
+cc -g -Wall -Wextra -Werror -Wno-unused-parameter -Wno-sign-compare -Wno-unused-function -Wno-unused-variable -Wdeclaration-after-statement -I. -DWLR_USE_UNSTABLE -std=c99 -I/usr/include/libdrm -I/usr/include/pixman-1        -c -o dwl.o dwl.c
+dwl.c: In function ‘applyrules’:
+dwl.c:478:26: error: ‘Client’ has no member named ‘alpha’
+  478 |                         c->alpha = r->alpha;
+      |                          ^~
+dwl.c: In function ‘changealpha’:
+dwl.c:692:20: error: ‘Client’ has no member named ‘alpha’
+  692 |                 sel->alpha += arg->f;
+      |                    ^~
+dwl.c:693:24: error: ‘Client’ has no member named ‘alpha’
+  693 |                 if (sel->alpha > 1.0)
+      |                        ^~
+dwl.c:694:28: error: ‘Client’ has no member named ‘alpha’
+  694 |                         sel->alpha = 1.0;
+      |                            ^~
+dwl.c:696:24: error: ‘Client’ has no member named ‘alpha’
+  696 |                 if (sel->alpha < 0.1)
+      |                        ^~
+dwl.c:697:28: error: ‘Client’ has no member named ‘alpha’
+  697 |                         sel->alpha = 0.1;
+      |                            ^~
+dwl.c: In function ‘createnotify’:
+dwl.c:914:10: error: ‘Client’ has no member named ‘alpha’
+  914 |         c->alpha = default_alpha;
+      |          ^~
+dwl.c:914:20: error: ‘default_alpha’ undeclared (first use in this function)
+  914 |         c->alpha = default_alpha;
+      |                    ^~~~~~~~~~~~~
+dwl.c:914:20: note: each undeclared identifier is reported only once for each function it appears in
+dwl.c: In function ‘setfullscreen’:
+dwl.c:1056:18: error: ‘Client’ has no member named ‘prevalpha’
+ 1056 |                 c->prevalpha = c->alpha;
+      |                  ^~
+dwl.c:1056:33: error: ‘Client’ has no member named ‘alpha’
+ 1056 |                 c->prevalpha = c->alpha;
+      |                                 ^~
+dwl.c:1057:18: error: ‘Client’ has no member named ‘alpha’
+ 1057 |                 c->alpha = 1;
+      |                  ^~
+dwl.c:1062:18: error: ‘Client’ has no member named ‘alpha’
+ 1062 |                 c->alpha = c->prevalpha;
+      |                  ^~
+dwl.c:1062:29: error: ‘Client’ has no member named ‘prevalpha’
+ 1062 |                 c->alpha = c->prevalpha;
+      |                             ^~
+dwl.c: In function ‘renderclients’:
+dwl.c:1761:32: error: ‘Client’ has no member named ‘alpha’
+ 1761 |                 rdata.alpha = c->alpha;
